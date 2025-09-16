@@ -22,10 +22,13 @@ public class NovelDetail {
     @Column(name = "genre", length = 32)
     private String genre; // 小说类型
 
-    @Column(name = "setting", length = 256)
+    @Column(name = "summary", columnDefinition = "TEXT")
+    private String summary; // 小说简介
+
+    @Column(name = "setting", columnDefinition = "TEXT")
     private String setting; // 背景设定
 
-    @Column(name = "outline", length = 2048)
+    @Column(name = "outline", columnDefinition = "TEXT")
     private String outline; // 小说大纲
 
     @Column(name = "tags", length = 256)

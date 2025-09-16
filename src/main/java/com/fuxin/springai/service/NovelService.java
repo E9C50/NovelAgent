@@ -25,6 +25,11 @@ public interface NovelService {
     NovelDetail getNovelDetail(String novelId);
 
     /**
+     * 列出全部小说
+     */
+    Iterable<NovelDetail> listAll();
+
+    /**
      * 保存小说角色设定
      *
      * @param novelId            小说ID

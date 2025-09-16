@@ -1,6 +1,7 @@
 package com.fuxin.springai.controller;
 
 import com.fuxin.springai.service.impl.NovelAgentServiceImpl;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,14 @@ public class StreamNovelController {
     @RequestMapping(value = "/generateOutline", method = RequestMethod.POST, produces = "text/event-stream")
     public Flux<String> generateOutline(@RequestParam @Validated String novelId) {
         return streamingAgent.generateOutline(novelId);
+    }
+
+    /**
+     * 流式生成章节内容
+     */
+    @RequestMapping(value = "/generateChapterContent", method = RequestMethod.POST, produces = "text/event-stream")
+    public Flux<String> generateChapterContent(@RequestParam @Validated String novelId, @RequestParam @Validated Integer chapterIndex) {
+        return streamingAgent.generateChapterContent(novelId, chapterIndex);
     }
 
 }
