@@ -29,36 +29,6 @@
 - **Ollama** - 支持本地部署的开源模型
 - **DeepSeek-V3** - 深度求索模型
 
-## 📁 项目结构
-
-```
-src/main/java/com/fuxin/springai/
-├── aop/                    # 切面编程
-│   └── GlobalExceptionHandler.java
-├── config/                 # 配置类
-│   ├── CorsConfig.java
-│   └── WebSocketConfig.java
-├── controller/             # 控制器层
-│   ├── NovelController.java
-│   └── StreamNovelController.java
-├── mapper/                 # 数据访问层
-│   ├── NovelChapterRepository.java
-│   └── NovelRepository.java
-├── model/                  # 数据模型
-│   ├── constant/
-│   │   └── PromptConstant.java
-│   └── dbo/
-│       ├── NovelChapter.java
-│       ├── NovelCharacter.java
-│       └── NovelDetail.java
-├── service/                # 业务逻辑层
-│   ├── impl/
-│   │   ├── NovelAgentServiceImpl.java
-│   │   └── NovelServiceImpl.java
-│   ├── NovelAgentService.java
-│   └── NovelService.java
-└── SpringAiApplication.java
-```
 
 ## 🎯 核心功能
 
@@ -118,82 +88,25 @@ spring.ai.ollama.chat.model=llama2
 mvn spring-boot:run
 ```
 
-## 📚 API接口
+## 🖼️ 项目截图
 
-### 小说管理接口
+以下是一些项目界面的截图，展示了系统的实际运行效果：
 
-#### 保存小说
-```http
-POST /api/novel/save
-Content-Type: application/x-www-form-urlencoded
+### 小说创建界面
+![小说创建界面](doc/Snipaste_2025-09-17_02-50-10.png)
 
-title=小说标题&style=风格&genre=类型&setting=背景设定&tags=标签
-```
+### 小说详情与大纲生成界面
+![小说详情与大纲生成界面](doc/Snipaste_2025-09-17_02-51-03.png)
 
-#### 获取小说详情
-```http
-POST /api/novel/detail
-Content-Type: application/x-www-form-urlencoded
+### 角色管理界面
+![角色管理界面](doc/Snipaste_2025-09-17_02-51-12.png)
 
-novelId=小说ID
-```
+### 章节内容生成界面
+![章节内容生成界面](doc/Snipaste_2025-09-17_02-51-23.png)
 
-### 流式生成接口
+## 📖 示例小说
 
-#### 生成小说大纲
-```http
-POST /api/stream/novel/generateOutline
-Content-Type: application/x-www-form-urlencoded
-
-novelId=小说ID
-```
-
-## 🗄️ 数据库设计
-
-### 主要数据表
-
-#### novel_detail (小说详情表)
-- `novel_id`: 小说ID (主键)
-- `title`: 小说标题
-- `style`: 小说风格
-- `genre`: 小说类型
-- `setting`: 背景设定
-- `outline`: 小说大纲
-- `tags`: 小说标签
-
-#### novel_character (角色表)
-- `character_id`: 角色ID (主键)
-- `novel_id`: 所属小说ID
-- `name`: 角色名称
-- `age`: 角色年龄
-- `gender`: 角色性别
-- `appearance`: 外貌描述
-- `personality`: 性格特点
-- `background`: 背景故事
-- `role`: 角色作用
-
-#### novel_chapter (章节表)
-- `chapter_id`: 章节ID (主键)
-- `novel_id`: 所属小说ID
-- `chapter_number`: 章节编号
-- `title`: 章节标题
-- `summary`: 章节摘要
-- `content`: 章节内容
-
-## 🎨 使用示例
-
-### 1. 创建小说
-```bash
-curl -X POST "http://localhost:8080/api/novel/save" \
-  -d "title=重生之我是冤种孙子&style=现代都市&genre=重生文&setting=现代都市背景&tags=重生,都市,爽文"
-```
-
-### 2. 生成大纲
-```bash
-curl -X POST "http://localhost:8080/api/stream/novel/generateOutline" \
-  -d "novelId=your_novel_id" \
-  -H "Accept: text/event-stream"
-```
+查看AI生成的小说示例：[重生之我是冤种孙子](重生之我是冤种孙子.md)
 
 ## 🔧 开发说明
 
